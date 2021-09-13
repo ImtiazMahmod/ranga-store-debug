@@ -59,7 +59,7 @@ button {
 #show-detail {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   margin: 50px 200px;
   padding: 50px;
   gap: 40px;
@@ -77,7 +77,7 @@ button {
 }
 
 #detail-decription {
-  width: 75%;
+  width: 50%;
 }
 
 /* add to card style */
@@ -130,8 +130,6 @@ button {
   box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.19);
   border-radius: 5px;
   margin-right: 30px;
-  position: sticky;
-  top: 10px;
   border-radius: 20px;
   transition: 0.6s;
   background-color: rgb(255, 255, 247);
@@ -143,6 +141,11 @@ button {
   transition: 0.8s;
   background-image: linear-gradient(rgb(255, 246, 246), rgb(255, 255, 241));
 
+}
+
+#cartPosition {
+  position: sticky;
+  top: 150px;
 }
 
 .cart-main {
