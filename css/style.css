@@ -29,18 +29,16 @@ input {
 }
 
 button {
-  padding-right: 10px;
   background-color: #fff;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.19);
+  /* border-top-right-radius: 25px; */
+  /* border-bottom-right-radius: 25px; */
   border: none;
   cursor: pointer;
   cursor: hand;
 }
 
 #search-button {
-  margin-left: -120px;
+  margin-left: -144px;
   padding: 15px 45px;
   font-size: 0.9em;
   text-transform: uppercase;
@@ -49,11 +47,13 @@ button {
   color: #fff;
   background-color: #F54E59;
   border-radius: 20px;
+  transition: 0.6s;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.19);
 }
 
 #search-button:hover {
   background-color: #d6121f;
+  transition: 0.6s;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.19);
 }
 
@@ -79,14 +79,17 @@ button {
   border: 1px solid rgb(252, 229, 212);
   box-shadow: 2px 2px 40px rgba(255, 247, 247, 0.19);
   height: 100%;
-
+  background-color: rgb(255, 255, 247);
 }
+
 
 .single-product:hover {
   box-shadow: 4px 4px 10px gray;
   border-radius: 10px;
+  transition: 0.8s;
   border: 1px solid cyan;
-  background-color: rgb(255, 255, 247);
+  /* background-color: rgba(251, 255, 22, 0.589); */
+  background-image: linear-gradient(rgb(255, 246, 246), rgb(255, 255, 241));
 }
 
 .product-image {
@@ -103,6 +106,16 @@ button {
   margin-right: 30px;
   position: fixed;
   border-radius: 20px;
+  transition: 0.6s;
+  background-color: rgb(255, 255, 247);
+}
+
+.cart:hover {
+  box-shadow: 4px 4px 10px gray;
+  border-radius: 10px;
+  transition: 0.8s;
+  background-image: linear-gradient(rgb(255, 246, 246), rgb(255, 255, 241));
+
 }
 
 .cart-main {
@@ -111,6 +124,12 @@ button {
 
 #my-cart {
   text-align: center;
+  padding: 20px;
+}
+
+tr>td {
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 768px) {
@@ -121,7 +140,6 @@ button {
 
   .cart {
     width: 300px;
-    /* border: 1px solid green; */
     padding: 10px;
     box-shadow: 10px 10px 20px gray;
     border-radius: 5px;
