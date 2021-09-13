@@ -10,7 +10,6 @@ loadProducts();
 const showProducts = (products) => {  
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    console.log(product)
     //product image
     const image = product.image;
     //product rating
@@ -27,8 +26,8 @@ const showProducts = (products) => {
       <h2><b>${rating.rate}</b><small>/5</small></h2>     
       <h4>${rating.count} ratings</h4>
       <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-primary btn-class">add to cart</button>
+      <button id="details-btn" class="btn btn-danger" onclick="detailsBtn()">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -88,3 +87,42 @@ const updateTotal = () => {
     getInputValue("total-tax")).toFixed(2);
   document.getElementById("total").innerText = grandTotal;
 };
+
+//details button
+const detailsBtn=()=>{
+  /* ---
+   Modal
+   ------ */
+   let  modalDisplay=null;
+   if(modalDisplay!==null){
+     modalDisplay.remove();
+   }
+   modalDisplay= document.createElement('div');
+   modalDisplay.innerHTML =`
+   
+   <div class="modal" id='MY' tabindex="-1">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h1 class="modal-title">Last Man</h1>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           <h2>Name: </h2>
+           <h2>Salary: </h2>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+       </div>
+     </div>
+   </div>  
+ `
+ document.body.append(modalDisplay);
+ const modal = new bootstrap.Modal(modalDisplay.querySelector('#MY'));//bootstrap 5 modal 
+ // const modal = new bootstrap.Modal(document.getElementById('MY'));//bootstrap 5 modal 
+ 
+ modal.show();
+
+}
