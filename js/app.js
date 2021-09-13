@@ -1,10 +1,10 @@
 const loadProducts = () => {
-  const url = `https://fakestoreapi.com/products`;
+  const url = `https://raw.githubusercontent.com/ProgrammingHero1/ranga-store-api/main/ranga-api.json?fbclid=IwAR36Oc6BANvURVBVBK1WdJq4Zl4AFFraOdaA-2osT67GGFq2U6Sw5ecb54Y`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => showProducts(data));
 };
-loadProducts();
+
 
 // show all product in UI 
 const showProducts = (products) => {  
@@ -88,41 +88,4 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal;
 };
 
-//details button
-const detailsBtn=()=>{
-  /* ---
-   Modal
-   ------ */
-   let  modalDisplay=null;
-   if(modalDisplay!==null){
-     modalDisplay.remove();
-   }
-   modalDisplay= document.createElement('div');
-   modalDisplay.innerHTML =`
-   
-   <div class="modal" id='MY' tabindex="-1">
-     <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h1 class="modal-title">Last Man</h1>
-           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-           <h2>Name: </h2>
-           <h2>Salary: </h2>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Save changes</button>
-         </div>
-       </div>
-     </div>
-   </div>  
- `
- document.body.append(modalDisplay);
- const modal = new bootstrap.Modal(modalDisplay.querySelector('#MY'));//bootstrap 5 modal 
- // const modal = new bootstrap.Modal(document.getElementById('MY'));//bootstrap 5 modal 
- 
- modal.show();
-
-}
+loadProducts();
