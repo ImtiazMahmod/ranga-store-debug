@@ -24,7 +24,7 @@ const showProducts = (products) => {
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
       <h2><b>${rating.rate}</b><small>/5</small></h2>     
-      <h4>${rating.count} ratings</h4>
+      <h4>${rating.count} Person rated.</h4>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-primary btn-class">add to cart</button>
       <button id="details-btn" class="btn btn-danger" onclick="detailsBtn(${product.id})">Details</button></div>
@@ -89,9 +89,30 @@ const updateTotal = () => {
 };
 
 loadProducts();
-const detailsBtn=(id)=>{
-  
+const detailsBtn=(id)=>{  
   fetch(`https://fakestoreapi.com/products/${id}`)
             .then(res=>res.json())
-            .then(json=>console.log(json))
+            .then(json=>showDetails(json))
+}
+const showDetails=(product)=>{
+  console.log(product);
+  const detailContainer = document.getElementById('details');
+  detailContainer.textContent= '';
+  const showDetail = document.createElement('div');
+  showDetail.setAttribute("id","show-detail");
+  showDetail.classList.add('single-product')
+  showDetail.innerHTML = `
+  <div id="product-img"> <img src="${product.image}" alt=""></div>
+  <div id="detail-decription">
+    <h1>${product.title}<title></title>
+    </h1>
+    <h3>Category: ${product.category}</h3>
+    <h1>Price: $ ${product.price}</h1>
+    <h2><b>Rating: ${product.rating.rate}</b><small>/5</small></h2>     
+    
+    <h4>${product.rating.count} person rated</h4>
+    <button class='search-button' id='addto-card'>Add to card</button>
+  </div>
+  `
+  detailContainer.append(showDetail);
 }
