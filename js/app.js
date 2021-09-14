@@ -14,7 +14,9 @@ const showProducts = (products) => {
     const image = product.image;
     //product rating
     const rating = product.rating
-   
+    const id = product.id;
+    let rateClass = `id${id}`;
+
     const div = document.createElement("div");
     div.classList.add("product");    
     div.innerHTML = `<div class="single-product">
@@ -23,18 +25,47 @@ const showProducts = (products) => {
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
-      <h2><b>${rating.rate}</b><small>/5</small></h2>     
+      <h2><b>${rating.rate}</b><small>/5</small></h2>   
+      <div class='${rateClass}'> 
+       <div class="stars-outer">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        <div class="stars-inner">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+       </div>
+      </div>  
       <h4>${rating.count} Person rated.</h4>
       <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-primary btn-class">add to cart</button>
+      <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-primary btn-class">add to cart</button>
       <button id="details-btn" class="btn btn-danger" onclick="detailsBtn(${product.id})">Details</button></div>
       `;
-    document.getElementById("all-products").appendChild(div);
+    document.getElementById("all-products").appendChild(div); 
+             
+    starRate(rating,rateClass);
   }
+ 
+  
 };
+const starRate=(rating,id)=>{
+  // total number of stars
+  const starTotal = 5;
+  const starPercentage = (rating.rate / starTotal) * 100;
+  const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
+ 
+  document.querySelector(`.${id} .stars-inner`).style.width = starPercentageRounded; 
+  
+}
 
 let count = 0;
-const addToCart = (id, price) => {
+const addToCart = (price) => {
   count = count + 1;
 
   //update price,tax and total price 
@@ -95,7 +126,10 @@ const detailsBtn=(id)=>{
             .then(json=>showDetails(json))
 }
 const showDetails=(product)=>{
-  console.log(product);
+  const rating = product.rating;
+  const id = product.id;
+  let rateClass = `id${id}`;
+
   const detailContainer = document.getElementById('details');
   detailContainer.textContent= '';
   const showDetail = document.createElement('div');
@@ -108,11 +142,28 @@ const showDetails=(product)=>{
     </h1>
     <h3>Category: ${product.category}</h3>
     <h1>Price: $ ${product.price}</h1>
-    <h2><b>Rating: ${product.rating.rate}</b><small>/5</small></h2>     
+    <h2><b>${rating.rate}</b><small>/5</small></h2>   
+      <div class='${rateClass}'> 
+       <div class="stars-outer">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        <div class="stars-inner">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+       </div>
+      </div>  
     
-    <h4>${product.rating.count} person rated</h4>
+    <h4>${rating.count} person rated</h4>
     <button class='search-button' id='addto-card'>Add to card</button>
   </div>
   `
   detailContainer.append(showDetail);
+  starRate(rating,rateClass);
 }

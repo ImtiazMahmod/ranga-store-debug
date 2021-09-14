@@ -59,7 +59,6 @@ button {
 #show-detail {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   margin: 50px 200px;
   padding: 50px;
   gap: 40px;
@@ -101,7 +100,6 @@ button {
 .single-product {
   padding: 10px;
   transition: 0.6s;
-  /* margin: 15px; */
   border-radius: 20px;
   border: 1px solid rgb(252, 229, 212);
   box-shadow: 2px 2px 40px rgba(255, 247, 247, 0.19);
@@ -113,8 +111,6 @@ button {
   box-shadow: 4px 4px 10px gray;
   border-radius: 10px;
   transition: 0.8s;
-  border: 1px solid cyan;
-  /* background-color: rgba(251, 255, 22, 0.589); */
   background-image: linear-gradient(rgb(255, 246, 246), rgb(255, 255, 241));
 }
 
@@ -160,6 +156,23 @@ button {
 tr>td {
   display: flex;
   justify-content: center;
+}
+
+/* star ratings */
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  color: #f7bd00;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
 }
 
 @media only screen and (max-width: 768px) {
