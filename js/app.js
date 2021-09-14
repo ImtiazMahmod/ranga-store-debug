@@ -161,9 +161,13 @@ const showDetails=(product)=>{
       </div>  
     
     <h4>${rating.count} person rated</h4>
+    <h3>Description</h3>
+    <p>${product.description}</p>
     <button class='search-button' id='addto-card'>Add to card</button>
+    
   </div>
   `
   detailContainer.append(showDetail);
+  console.log(product);
   starRate(rating,rateClass);
 }
