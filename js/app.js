@@ -5,20 +5,19 @@ const loadProducts = () => {
     .then((data) => showProducts(data));
 };
 
-
-// show all product in UI 
-const showProducts = (products) => {  
+// show all product in UI
+const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     //product image
     const image = product.image;
     //product rating
-    const rating = product.rating
+    const rating = product.rating;
     const id = product.id;
     let rateClass = `id${id}`;
 
     const div = document.createElement("div");
-    div.classList.add("product");    
+    div.classList.add("product");
     div.innerHTML = `<div class="single-product">
       <div>
     <img class="product-image" src=${image}></img>
@@ -47,28 +46,26 @@ const showProducts = (products) => {
       <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-primary btn-class">add to cart</button>
       <button id="details-btn" class="btn btn-danger" onclick="detailsBtn(${product.id})">Details</button></div>
       `;
-    document.getElementById("all-products").appendChild(div); 
-             
-    starRate(rating,rateClass);
+    document.getElementById("all-products").appendChild(div);
+
+    starRate(rating, rateClass);
   }
- 
-  
 };
-const starRate=(rating,id)=>{
+const starRate = (rating, id) => {
   // total number of stars
   const starTotal = 5;
   const starPercentage = (rating.rate / starTotal) * 100;
-  const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
- 
-  document.querySelector(`.${id} .stars-inner`).style.width = starPercentageRounded; 
-  
-}
+  const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+  document.querySelector(`.${id} .stars-inner`).style.width =
+    starPercentageRounded;
+};
 
 let count = 0;
 const addToCart = (price) => {
   count = count + 1;
 
-  //update price,tax and total price 
+  //update price,tax and total price
   updatePrice("price", price);
   updateTaxAndCharge();
   updateTotal();
@@ -86,12 +83,16 @@ const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = (Math.round(total * 100) / 100).toFixed(2);
+  document.getElementById(id).innerText = (
+    Math.round(total * 100) / 100
+  ).toFixed(2);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = (Math.round(value * 100) / 100).toFixed(2);
+  document.getElementById(id).innerText = (
+    Math.round(value * 100) / 100
+  ).toFixed(2);
 };
 
 // update delivery charge and total Tax
@@ -113,28 +114,30 @@ const updateTaxAndCharge = () => {
 
 //grandTotal update function
 const updateTotal = () => {
-  const grandTotal =
-    (getInputValue("price") + getInputValue("delivery-charge") +
-    getInputValue("total-tax")).toFixed(2);
+  const grandTotal = (
+    getInputValue("price") +
+    getInputValue("delivery-charge") +
+    getInputValue("total-tax")
+  ).toFixed(2);
   document.getElementById("total").innerText = grandTotal;
 };
 
 loadProducts();
-const detailsBtn=(id)=>{  
+const detailsBtn = (id) => {
   fetch(`https://fakestoreapi.com/products/${id}`)
-            .then(res=>res.json())
-            .then(json=>showDetails(json))
-}
-const showDetails=(product)=>{
+    .then((res) => res.json())
+    .then((json) => showDetails(json));
+};
+const showDetails = (product) => {
   const rating = product.rating;
   const id = product.id;
   let rateClass = `id${id}`;
 
-  const detailContainer = document.getElementById('details');
-  detailContainer.textContent= '';
-  const showDetail = document.createElement('div');
-  showDetail.setAttribute("id","show-detail");
-  showDetail.classList.add('single-product')
+  const detailContainer = document.getElementById("details");
+  detailContainer.textContent = "";
+  const showDetail = document.createElement("div");
+  showDetail.setAttribute("id", "show-detail");
+  showDetail.classList.add("single-product");
   showDetail.innerHTML = `
   <div id="product-img"> <img src="${product.image}" alt=""></div>
   <div id="detail-decription">
@@ -166,8 +169,8 @@ const showDetails=(product)=>{
     <button class='search-button' id='addto-card'>Add to card</button>
     
   </div>
-  `
+  `;
   detailContainer.append(showDetail);
   console.log(product);
-  starRate(rating,rateClass);
-}
+  starRate(rating, rateClass);
+};
